@@ -1,0 +1,10 @@
+# Legacy SSE transport: exposes GET /sse and POST /mcp/message
+# Run with: ./mvnw spring-boot:run -Dspring-boot.run.profiles=sse
+spring:
+  ai:
+    mcp:
+      server:
+        protocol: SSE
+        sse-endpoint: /sse
+        sse-message-endpoint: /mcp/message
+        keep-alive-interval: 30s

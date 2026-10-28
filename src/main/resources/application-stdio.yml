@@ -1,0 +1,15 @@
+# STDIO transport: the JVM becomes an MCP server speaking JSON-RPC over stdin/stdout.
+# Run with: ./mvnw spring-boot:run -Dspring-boot.run.profiles=stdio
+#
+# Note: Spring AI only serves one transport at a time, so enabling STDIO switches off
+# the HTTP endpoints. Logs are written to a file because stdout is reserved for MCP.
+spring:
+  main:
+    banner-mode: off
+  ai:
+    mcp:
+      server:
+        stdio: true
+
+logging:
+  config: classpath:logback-stdio.xml
