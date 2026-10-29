@@ -13,8 +13,9 @@ spring:
         protocol: STREAMABLE
         instructions: >
           Demo MCP server backed by mocked data. It exposes tools over a user directory,
-          a product catalogue and an aggregated dashboard. All data is in-memory and
-          read-only, so it is safe to call any tool.
+          a product catalogue and an aggregated dashboard. All data is in-memory and the
+          reads are safe to call any time; addProduct is the only tool that changes state
+          and its changes are lost when the server restarts.
         capabilities:
           tool: true
           resource: false

@@ -1,7 +1,8 @@
 # demo-mcp-server
 
 A demo **MCP (Model Context Protocol) server** built with **Spring Boot 4.1** and **Spring AI 2.0**.
-All data is mocked and in-memory, so every tool is safe to call.
+All data is mocked and in-memory: reads are side-effect free and `addProduct` mutates the
+catalogue in memory only (changes are lost on restart).
 
 | | |
 |---|---|
@@ -25,8 +26,10 @@ Tools are declared with `@McpTool` / `@McpToolParam` annotations and auto-regist
 | Tool | Input | Description |
 |---|---|---|
 | `getAllProducts` | – | Full product catalogue |
+| `getProductById` | `id` (string) | Single product, errors when the id is unknown |
 | `getProductsByCategory` | `category` (string) | Products of one category (partial match) |
 | `getLowStockProducts` | `threshold` (int) | Products with stock ≤ threshold, lowest first |
+| `addProduct` | `name`, `category`, `price`, `stock` | **Write tool**: appends a product with a generated id (`P-2007`, …) |
 
 ### `DashboardService`
 | Tool | Input | Description |
@@ -111,7 +114,8 @@ Build the jar first: `./mvnw -DskipTests package`.
 ./mvnw test
 ```
 
-Unit tests cover the mocked services (search behaviour, unknown ids, empty results).
+Unit tests cover the mocked services (search behaviour, unknown ids, empty results,
+product creation and validation, dashboard totals).
 
 ## Project layout
 

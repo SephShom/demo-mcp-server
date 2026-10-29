@@ -15,7 +15,7 @@ import com.example.demo.model.ServerInfo;
 @Service
 public class DashboardService {
 
-    static final int EXPOSED_TOOLS = 8;
+    static final int EXPOSED_TOOLS = 10;
 
     private final UserService userService;
     private final ProductService productService;
